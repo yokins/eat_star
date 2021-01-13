@@ -17,7 +17,7 @@
         "__id__": 2
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": null,
     "_opacity": 255,
@@ -88,21 +88,24 @@
       },
       {
         "__id__": 33
+      },
+      {
+        "__id__": 42
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 42
-      },
-      {
-        "__id__": 43
-      },
-      {
         "__id__": 44
       },
       {
         "__id__": 45
+      },
+      {
+        "__id__": 46
+      },
+      {
+        "__id__": 47
       }
     ],
     "_prefab": null,
@@ -434,7 +437,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 2436,
-      "height": 200
+      "height": 150
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -446,7 +449,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -275,
+        -300,
         0,
         0,
         0,
@@ -512,10 +515,10 @@
     "_enabled": true,
     "alignMode": 1,
     "_target": null,
-    "_alignFlags": 45,
+    "_alignFlags": 44,
     "_left": 0,
     "_right": 0,
-    "_top": 550,
+    "_top": 522,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -638,6 +641,12 @@
     "jumpDuration": 0.7,
     "maxMoveSpeed": 200,
     "accel": 100,
+    "jumpAudio": {
+      "__uuid__": "692ec839-c168-4b16-81ff-471063446207"
+    },
+    "scoreAudio": {
+      "__uuid__": "2740cca3-52d3-4f03-8d19-f5bfaef5d6f9"
+    },
     "_id": "a9Ig/FoDZAK7XAGghh7nTU"
   },
   {
@@ -1886,6 +1895,103 @@
     "_id": "2bXZnKJ91IUZjoehqXQ71u"
   },
   {
+    "__type__": "cc.Node",
+    "_name": "score",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 43
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 152.22,
+      "height": 40
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_trs": {
+      "__type__": "TypedArray",
+      "ctor": "Float64Array",
+      "array": [
+        0,
+        264.028,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "_groupIndex": 0,
+    "groupIndex": 0,
+    "_id": "70BhJ45QdNdZPxs6X8sSaK"
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 42
+    },
+    "_enabled": true,
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_string": "Score: 0",
+    "_N$string": "Score: 0",
+    "_fontSize": 40,
+    "_lineHeight": 40,
+    "_enableWrapText": true,
+    "_N$file": {
+      "__uuid__": "15cdde19-410c-4d39-b5a6-a663621bdf46"
+    },
+    "_isSystemFontUsed": false,
+    "_spacingX": 0,
+    "_batchAsBitmap": false,
+    "_styleFlags": 0,
+    "_underlineHeight": 0,
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 0,
+    "_N$cacheMode": 0,
+    "_id": "2d6x9H0XlNTooq8rYSfubQ"
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -1937,6 +2043,23 @@
       "__id__": 2
     },
     "_enabled": true,
+    "starPrefab": {
+      "__uuid__": "6de120bc-fb7c-499a-8303-873b17752b52"
+    },
+    "maxStarDuration": 10,
+    "minStarDuration": 6,
+    "ground": {
+      "__id__": 9
+    },
+    "player": {
+      "__id__": 12
+    },
+    "scoreDisplay": {
+      "__id__": 43
+    },
+    "scoreAudio": {
+      "__uuid__": "2740cca3-52d3-4f03-8d19-f5bfaef5d6f9"
+    },
     "_id": "1dJeURb9VETI7xt8AD4jYS"
   },
   {

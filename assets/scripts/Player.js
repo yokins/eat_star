@@ -32,14 +32,28 @@ cc.Class({
         // 最大移动速度
         maxMoveSpeed: 0,
         // 加速度
-        accel: 0
+        accel: 0,
+
+        jumpAudio: {
+            default: null,
+            type: cc.AudioClip,
+        },
+        scoreAudio: {
+            default: null,
+            type: cc.AudioClip,
+        },
     },
 
     runJumpAction() {
         const jumpUp = cc.tween().by(this.jumpDuration, { y: this.jumpHeight }, { easing: "sineOut" });
         const jumpDown = cc.tween().by(this.jumpDuration, { y: -this.jumpHeight }, { easing: "sineIn" });
-        const tween = cc.tween().sequence(jumpUp, jumpDown);
+        const tween = cc.tween().sequence(jumpUp, jumpDown).call(this.playJumpSound, this);
         return cc.tween().repeatForever(tween);
+    },
+
+    playJumpSound: function () {
+        // 调用声音引擎播放声音
+        cc.audioEngine.playEffect(this.jumpAudio, false);
     },
 
     onClickLeftButton() {
@@ -54,7 +68,7 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         const jumpAction = this.runJumpAction();
         cc.tween(this.node).then(jumpAction).start();
         this.accLeft = false;
@@ -62,9 +76,7 @@ cc.Class({
         this.xSpeed = 0;
     },
 
-    start () {
-
-    },
+    start() {},
 
     update(dt) {
         // 根据当前加速度方向每帧更新速度
@@ -81,15 +93,15 @@ cc.Class({
         }
 
         const rect = cc.view.getViewportRect();
-        
+
         const x = this.node.x + this.xSpeed * dt;
 
-        if (x > 100 - rect.width && x < rect.width - 100 ) {
+        if (x > -rect.width && x < rect.width) {
             this.node.x += this.xSpeed * dt;
         } else {
             this.xSpeed = 0;
             this.accLeft = false;
             this.accRight = false;
         }
-    }
+    },
 });
