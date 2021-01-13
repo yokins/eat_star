@@ -43,13 +43,13 @@ cc.Class({
     },
 
     onClickLeftButton() {
-        this.moveCount -= 1;
-        // this.node.x -= 50;
+        this.accLeft = true;
+        this.accRight = false;
     },
 
     onClickRightButton() {
-        this.moveCount += 1;
-        // this.node.x += 50;
+        this.accLeft = false;
+        this.accRight = true;
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -57,7 +57,9 @@ cc.Class({
     onLoad () {
         const jumpAction = this.runJumpAction();
         cc.tween(this.node).then(jumpAction).start();
-        this.moveCount = 0;
+        this.accLeft = false;
+        this.accRight = false;
+        this.xSpeed = 0;
     },
 
     start () {
@@ -65,8 +67,29 @@ cc.Class({
     },
 
     update(dt) {
-        // // console.log("🚀 ~ file: Player.js ~ line 64 ~ update ~ dt", dt);
-        this.node.x = 50 * this.moveCount;
-        // console.log("🚀 ~ file: Player.js ~ line 69 ~ update ~ this.moveCount", this.moveCount)
+        // 根据当前加速度方向每帧更新速度
+        if (this.accLeft) {
+            this.xSpeed -= this.accel * dt;
+        } else if (this.accRight) {
+            this.xSpeed += this.accel * dt;
+        }
+
+        // 限制主角的速度不能超过最大值
+        if (Math.abs(this.xSpeed) > this.maxMoveSpeed) {
+            // if speed reach limit, use max speed with current direction
+            this.xSpeed = (this.maxMoveSpeed * this.xSpeed) / Math.abs(this.xSpeed);
+        }
+
+        const rect = cc.view.getViewportRect();
+        
+        const x = this.node.x + this.xSpeed * dt;
+
+        if (x > 100 - rect.width && x < rect.width - 100 ) {
+            this.node.x += this.xSpeed * dt;
+        } else {
+            this.xSpeed = 0;
+            this.accLeft = false;
+            this.accRight = false;
+        }
     }
 });
